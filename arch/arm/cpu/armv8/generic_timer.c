@@ -18,9 +18,13 @@ DECLARE_GLOBAL_DATA_PTR;
  */
 unsigned long get_tbclk(void)
 {
+#ifndef COUNTER_FREQUENCY
 	unsigned long cntfrq;
 	asm volatile("mrs %0, cntfrq_el0" : "=r" (cntfrq));
 	return cntfrq;
+#else
+	return COUNTER_FREQUENCY;
+#endif
 }
 
 #ifdef CONFIG_SYS_FSL_ERRATUM_A008585
