@@ -60,6 +60,14 @@
 		reg = <0x13470000 0x1000>;
 		u-boot,dm-pre-reloc;
 
+		serial1_bus: serial1-bus {
+			samsung,pins = "gpd1-3", "gpd1-2", "gpd1-1", "gpd1-0";
+			samsung,pin-function = <2>;
+			samsung,pin-pud = <3>;
+			samsung,pin-drv = <0>;
+			u-boot,dm-pre-reloc;
+		};
+
 		serial2_bus: serial2-bus {
 			samsung,pins = "gpd1-4", "gpd1-5";
 			samsung,pin-function = <2>;
@@ -67,6 +75,17 @@
 			samsung,pin-drv = <0>;
 			u-boot,dm-pre-reloc;
 		};
+	};
+
+	serial@14C20000 {
+		compatible = "samsung,exynos4210-uart";
+		reg = <0x14C20000 0x100>;
+		u-boot,dm-pre-reloc;
+		clocks = <&clock_peric1 PCLK_UART1>,
+			 <&clock_peric1 SCLK_UART1>;
+		clock-names = "uart", "clk_uart_baud0";
+		pinctrl-names = "default";
+		pinctrl-0 = <&serial1_bus>;
 	};
 
 	serial@14C30000 {
