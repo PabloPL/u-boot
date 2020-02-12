@@ -32,7 +32,8 @@
 #define COUNTER_FREQUENCY		24000000
 
 /* Device Tree */
-#define CONFIG_DEVICE_TREE_LIST "exynos7420-espresso7420"
+#define CONFIG_DEVICE_TREE_LIST "exynos7420-espresso7420"	\
+				"exynos7420-zero"
 
 /* IRAM Layout */
 #define CONFIG_IRAM_BASE		0x02100000

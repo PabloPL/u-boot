@@ -27,7 +27,8 @@ dtb-$(CONFIG_EXYNOS5) += exynos5250-arndale.dtb \
 	exynos5420-peach-pit.dtb \
 	exynos5800-peach-pi.dtb \
 	exynos5422-odroidxu3.dtb
-dtb-$(CONFIG_EXYNOS7420) += exynos7420-espresso7420.dtb
+dtb-$(CONFIG_EXYNOS7420) += exynos7420-espresso7420.dtb \
+	exynos7420-zero.dtb
 
 dtb-$(CONFIG_ARCH_DAVINCI) += \
 	da850-evm.dtb \

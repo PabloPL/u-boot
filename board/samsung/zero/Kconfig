@@ -1,0 +1,15 @@
+if TARGET_ZERO
+
+config SYS_BOARD
+	default "zero"
+	help
+	  Samsung zero is a mobile phone using Exynos7420 SoC.
+	  It's also called Samsung Galaxy S6/S6 Edge.
+
+config SYS_VENDOR
+	default "samsung"
+
+config SYS_CONFIG_NAME
+	default "zero"
+
+endif
