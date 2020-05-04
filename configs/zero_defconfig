@@ -16,4 +16,5 @@ CONFIG_SYS_PROMPT="Samsung S6/S6 edge # "
 # CONFIG_AUTOBOOT is not set
 # CONFIG_CMD_SETEXPR is not set
 CONFIG_DEFAULT_DEVICE_TREE="exynos7420-zero"
+CONFIG_CLK_CCF=y
 # CONFIG_MMC is not set
