@@ -407,6 +407,13 @@ config SYS_I2C_S3C24X0
 	help
 	  Support for Samsung I2C controller as Samsung SoCs.
 
+config SYS_I2C_EXYNOS_HS
+	bool "Exynos I2C HS driver"
+	depends on (ARCH_EXYNOS4 || ARCH_EXYNOS7) && DM_I2C
+	default y if SYS_I2C_S3C24X0
+	help
+	  Support for Exynos I2C HS controller as Exynos SoCs.
+
 config SYS_I2C_STM32F7
 	bool "STMicroelectronics STM32F7 I2C support"
 	depends on (STM32F7 || STM32H7 || ARCH_STM32MP) && DM_I2C
