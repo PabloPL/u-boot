@@ -527,7 +527,9 @@ static int s3c_i2c_ofdata_to_platdata(struct udevice *dev)
 
 	i2c_bus->hsregs = dev_read_addr_ptr(dev);
 
+#ifndef CONFIG_PINCTRL_EXYNOS
 	i2c_bus->id = pinmux_decode_periph_id(blob, node);
+#endif
 
 	i2c_bus->clock_frequency =
 		dev_read_u32_default(dev, "clock-frequency",
@@ -535,7 +537,9 @@ static int s3c_i2c_ofdata_to_platdata(struct udevice *dev)
 	i2c_bus->node = node;
 	i2c_bus->bus_num = dev->seq;
 
+#ifndef CONFIG_PINCTRL_EXYNOS
 	exynos_pinmux_config(i2c_bus->id, PINMUX_FLAG_HS_MODE);
+#endif
 
 	i2c_bus->active = true;
 
