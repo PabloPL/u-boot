@@ -6,6 +6,8 @@
 #ifndef _S3C24X0_I2C_H
 #define _S3C24X0_I2C_H
 
+#include <clk.h>
+
 struct s3c24x0_i2c {
 	u32	iiccon;
 	u32	iicstat;
@@ -57,6 +59,9 @@ struct s3c24x0_i2c_bus {
 	int id;
 	unsigned clk_cycle;
 	unsigned clk_div;
+#ifdef CONFIG_CLK_EXYNOS
+	struct clk clk;
+#endif
 };
 
 #define	I2C_WRITE	0

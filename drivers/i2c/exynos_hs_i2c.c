@@ -7,6 +7,7 @@
  */
 
 #include <common.h>
+#include <clk.h>
 #include <dm.h>
 #include <i2c.h>
 #include <log.h>
@@ -148,6 +149,8 @@ static int hsi2c_get_clk_details(struct s3c24x0_i2c_bus *i2c_bus)
 
 #if (defined CONFIG_EXYNOS4 || defined CONFIG_EXYNOS5)
 	clkin = get_i2c_clk();
+#elif (defined CONFIG_CLK_EXYNOS)
+	clkin = clk_get_rate(&i2c_bus->clk);
 #else
 	clkin = get_PCLK();
 #endif
@@ -519,7 +522,10 @@ static int s3c24x0_i2c_probe(struct udevice *dev, uint chip, uint chip_flags)
 
 static int s3c_i2c_ofdata_to_platdata(struct udevice *dev)
 {
+	int ret = 0;
+#ifndef CONFIG_PINCTRL_EXYNOS
 	const void *blob = gd->fdt_blob;
+#endif
 	struct s3c24x0_i2c_bus *i2c_bus = dev_get_priv(dev);
 	int node;
 
@@ -529,6 +535,20 @@ static int s3c_i2c_ofdata_to_platdata(struct udevice *dev)
 
 #ifndef CONFIG_PINCTRL_EXYNOS
 	i2c_bus->id = pinmux_decode_periph_id(blob, node);
+#endif
+
+#ifdef CONFIG_CLK_EXYNOS
+	ret = clk_get_by_index(dev, 0, &i2c_bus->clk);
+	if (ret) {
+		debug("%s: Failed to get clk\n", __func__);
+		return ret;
+	}
+
+	ret = clk_enable(&i2c_bus->clk);
+	if (ret) {
+		debug("%s: Failed to enable clk\n", __func__);
+		return ret;
+	}
 #endif
 
 	i2c_bus->clock_frequency =
@@ -543,7 +563,7 @@ static int s3c_i2c_ofdata_to_platdata(struct udevice *dev)
 
 	i2c_bus->active = true;
 
-	return 0;
+	return ret;
 }
 
 static const struct dm_i2c_ops exynos_hs_i2c_ops = {
