@@ -48,6 +48,11 @@ struct exynos5_hsi2c {
 	u32	i2c_addr;
 };
 
+enum i2c_type_exynos {
+	I2C_TYPE_EXYNOS5,
+	I2C_TYPE_EXYNOS7,
+};
+
 struct s3c24x0_i2c_bus {
 	bool active;	/* port is active and available */
 	int node;	/* device tree node */
@@ -62,6 +67,7 @@ struct s3c24x0_i2c_bus {
 #ifdef CONFIG_CLK_EXYNOS
 	struct clk clk;
 #endif
+	enum i2c_type_exynos hw_variant;
 };
 
 #define	I2C_WRITE	0
