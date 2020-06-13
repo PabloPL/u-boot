@@ -11,6 +11,7 @@
 #include <dt-bindings/clock/exynos7420-clk.h>
 / {
 	compatible = "samsung,exynos7420";
+	interrupt-parent = <&gic>;
 
 	fin_pll: fin_pll {
 		compatible = "fixed-clock";
@@ -52,6 +53,17 @@
 		clock-output-names = "phyclk_ufs20_rx1_symbol";
 		#clock-cells = <0>;
 		clock-frequency = <300000000>;
+	};
+
+	gic: interrupt-controller@11001000 {
+		compatible = "arm,gic-400";
+		#interrupt-cells = <3>;
+		#address-cells = <0>;
+		interrupt-controller;
+		reg =	<0x11001000 0x1000>,
+			<0x11002000 0x1000>,
+			<0x11004000 0x2000>,
+			<0x11006000 0x2000>;
 	};
 
 	clock_topc: clock-controller@10570000 {
