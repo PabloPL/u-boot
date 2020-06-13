@@ -9,6 +9,7 @@
 /dts-v1/;
 #include "skeleton.dtsi"
 #include <dt-bindings/clock/exynos7420-clk.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
 / {
 	compatible = "samsung,exynos7420";
 	interrupt-parent = <&gic>;
@@ -174,6 +175,162 @@
 					"phyclk_ufs20_rx1_symbol";
 	};
 
+	hsi2c_0: hsi2c@13640000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x13640000 0x1000>;
+		interrupts = <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c0_bus>;
+		clocks = <&clock_peric0 PCLK_HSI2C0>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_1: hsi2c@13650000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x13650000 0x1000>;
+		interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c1_bus>;
+		clocks = <&clock_peric0 PCLK_HSI2C1>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_2: hsi2c@14e60000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x14e60000 0x1000>;
+		interrupts = <GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c2_bus>;
+		clocks = <&clock_peric1 PCLK_HSI2C2>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_3: hsi2c@14e70000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x14e70000 0x1000>;
+		interrupts = <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c3_bus>;
+		clocks = <&clock_peric1 PCLK_HSI2C3>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_4: hsi2c@13660000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x13660000 0x1000>;
+		interrupts = <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c4_bus>;
+		clocks = <&clock_peric0 PCLK_HSI2C4>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_5: hsi2c@13670000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x13670000 0x1000>;
+		interrupts = <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c5_bus>;
+		clocks = <&clock_peric0 PCLK_HSI2C5>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_6: hsi2c@14e00000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x14e00000 0x1000>;
+		interrupts = <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c6_bus>;
+		clocks = <&clock_peric1 PCLK_HSI2C6>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_7: hsi2c@13e10000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x13e10000 0x1000>;
+		interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c7_bus>;
+		clocks = <&clock_peric1 PCLK_HSI2C7>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_8: hsi2c@14e20000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x14e20000 0x1000>;
+		interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c8_bus>;
+		clocks = <&clock_peric1 PCLK_HSI2C8>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_9: hsi2c@13680000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x13680000 0x1000>;
+		interrupts = <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c9_bus>;
+		clocks = <&clock_peric0 PCLK_HSI2C9>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_10: hsi2c@13690000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x13690000 0x1000>;
+		interrupts = <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c10_bus>;
+		clocks = <&clock_peric0 PCLK_HSI2C10>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
+	hsi2c_11: hsi2c@136a0000 {
+		compatible = "samsung,exynos7-hsi2c";
+		reg = <0x136a0000 0x1000>;
+		interrupts = <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hs_i2c11_bus>;
+		clocks = <&clock_peric0 PCLK_HSI2C11>;
+		clock-names = "hsi2c";
+		status = "disabled";
+	};
+
 	pinctrl@13470000 {
 		compatible = "samsung,exynos7420-pinctrl";
 		reg = <0x13470000 0x1000>;
@@ -193,6 +350,20 @@
 			samsung,pin-pud = <3>;
 			samsung,pin-drv = <0>;
 			u-boot,dm-pre-reloc;
+		};
+
+		hs_i2c1_bus: hs-i2c1-bus {
+			samsung,pins = "gpd2-3", "gpd2-2";
+			samsung,pin-function = <2>;
+			samsung,pin-pud = <3>;
+			samsung,pin-drv = <0>;
+		};
+
+		hs_i2c4_bus: hs-i2c4-bus {
+			samsung,pins = "gpg3-1", "gpg3-0";
+			samsung,pin-function = <2>;
+			samsung,pin-pud = <3>;
+			samsung,pin-drv = <0>;
 		};
 	};
 

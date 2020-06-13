@@ -15,3 +15,12 @@
 &fin_pll {
 	clock-frequency = <24000000>;
 };
+
+&hsi2c_1 {
+	status = "okay";
+};
+
+&hsi2c_4 {
+	status = "okay";
+	clock-frequency = <2500000>;
+};
