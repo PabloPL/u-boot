@@ -14,6 +14,18 @@
 	compatible = "samsung,exynos7420";
 	interrupt-parent = <&gic>;
 
+	aliases {
+		pinctrl0 = &pinctrl_alive;
+		pinctrl1 = &pinctrl_bus0;
+		pinctrl2 = &pinctrl_nfc;
+		pinctrl3 = &pinctrl_touch;
+		pinctrl4 = &pinctrl_ff;
+		pinctrl5 = &pinctrl_ese;
+		pinctrl6 = &pinctrl_fsys0;
+		pinctrl7 = &pinctrl_fsys1;
+		pinctrl8 = &pinctrl_bus1;
+	};
+
 	fin_pll: fin_pll {
 		compatible = "fixed-clock";
 		clock-output-names = "fin_pll";
@@ -331,40 +343,58 @@
 		status = "disabled";
 	};
 
-	pinctrl@13470000 {
-		compatible = "samsung,exynos7420-pinctrl";
+	pinctrl_alive: pinctrl@10580000 {
+		compatible = "samsung,exynos7-pinctrl";
+		reg = <0x10580000 0x1000>;
+		u-boot,dm-pre-reloc;
+	};
+
+	pinctrl_bus0: pinctrl@13470000 {
+		compatible = "samsung,exynos7-pinctrl";
 		reg = <0x13470000 0x1000>;
 		u-boot,dm-pre-reloc;
+	};
 
-		serial1_bus: serial1-bus {
-			samsung,pins = "gpd1-3", "gpd1-2", "gpd1-1", "gpd1-0";
-			samsung,pin-function = <2>;
-			samsung,pin-pud = <3>;
-			samsung,pin-drv = <0>;
-			u-boot,dm-pre-reloc;
-		};
+	pinctrl_nfc: pinctrl@14cd0000 {
+		compatible = "samsung,exynos7-pinctrl";
+		reg = <0x14cd0000 0x1000>;
+		u-boot,dm-pre-reloc;
+	};
 
-		serial2_bus: serial2-bus {
-			samsung,pins = "gpd1-4", "gpd1-5";
-			samsung,pin-function = <2>;
-			samsung,pin-pud = <3>;
-			samsung,pin-drv = <0>;
-			u-boot,dm-pre-reloc;
-		};
+	pinctrl_touch: pinctrl@14ce0000 {
+		compatible = "samsung,exynos7-pinctrl";
+		reg = <0x14ce0000 0x1000>;
+		u-boot,dm-pre-reloc;
+	};
 
-		hs_i2c1_bus: hs-i2c1-bus {
-			samsung,pins = "gpd2-3", "gpd2-2";
-			samsung,pin-function = <2>;
-			samsung,pin-pud = <3>;
-			samsung,pin-drv = <0>;
-		};
+	pinctrl_ff: pinctrl@14c90000 {
+		compatible = "samsung,exynos7-pinctrl";
+		reg = <0x14c90000 0x1000>;
+		u-boot,dm-pre-reloc;
+	};
 
-		hs_i2c4_bus: hs-i2c4-bus {
-			samsung,pins = "gpg3-1", "gpg3-0";
-			samsung,pin-function = <2>;
-			samsung,pin-pud = <3>;
-			samsung,pin-drv = <0>;
-		};
+	pinctrl_ese: pinctrl@14ca0000 {
+		compatible = "samsung,exynos7-pinctrl";
+		reg = <0x14ca0000 0x1000>;
+		u-boot,dm-pre-reloc;
+	};
+
+	pinctrl_fsys0: pinctrl@10e60000 {
+		compatible = "samsung,exynos7-pinctrl";
+		reg = <0x10e60000 0x1000>;
+		u-boot,dm-pre-reloc;
+	};
+
+	pinctrl_fsys1: pinctrl@15690000 {
+		compatible = "samsung,exynos7-pinctrl";
+		reg = <0x15690000 0x1000>;
+		u-boot,dm-pre-reloc;
+	};
+
+	pinctrl_bus1: pinctrl@14870000 {
+		compatible = "samsung,exynos7-pinctrl";
+		reg = <0x14870000 0x1000>;
+		u-boot,dm-pre-reloc;
 	};
 
 	serial@14C20000 {
@@ -375,7 +405,7 @@
 			 <&clock_peric1 SCLK_UART1>;
 		clock-names = "uart", "clk_uart_baud0";
 		pinctrl-names = "default";
-		pinctrl-0 = <&serial1_bus>;
+		pinctrl-0 = <&uart1_data &uart1_fctl>;
 	};
 
 	serial@14C30000 {
@@ -386,6 +416,8 @@
 			 <&clock_peric1 SCLK_UART2>;
 		clock-names = "uart", "clk_uart_baud0";
 		pinctrl-names = "default";
-		pinctrl-0 = <&serial2_bus>;
+		pinctrl-0 = <&uart2_data>;
 	};
 };
+
+#include "exynos7420-pinctrl.dtsi"
